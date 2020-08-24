@@ -1,6 +1,9 @@
 package com.alan.testproject.bean
 
-data class ResponseBean (
+import android.os.Parcel
+import android.os.Parcelable
+
+data class ResponseBean(
     /**
      * current_user_url : https://api.github.com/user
      * current_user_authorizations_html_url : https://github.com/settings/connections/applications{/client_id}
@@ -68,4 +71,84 @@ data class ResponseBean (
     var user_repositories_url: String? = null,
     var user_search_url: String? = null
 
-)
+) : Parcelable {
+    constructor(source: Parcel) : this(
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString(),
+        source.readString()
+    )
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        writeString(current_user_url)
+        writeString(current_user_authorizations_html_url)
+        writeString(authorizations_url)
+        writeString(code_search_url)
+        writeString(commit_search_url)
+        writeString(emails_url)
+        writeString(emojis_url)
+        writeString(events_url)
+        writeString(feeds_url)
+        writeString(followers_url)
+        writeString(following_url)
+        writeString(gists_url)
+        writeString(hub_url)
+        writeString(issue_search_url)
+        writeString(issues_url)
+        writeString(keys_url)
+        writeString(label_search_url)
+        writeString(notifications_url)
+        writeString(organization_url)
+        writeString(organization_repositories_url)
+        writeString(organization_teams_url)
+        writeString(public_gists_url)
+        writeString(rate_limit_url)
+        writeString(repository_url)
+        writeString(repository_search_url)
+        writeString(current_user_repositories_url)
+        writeString(starred_url)
+        writeString(starred_gists_url)
+        writeString(user_url)
+        writeString(user_organizations_url)
+        writeString(user_repositories_url)
+        writeString(user_search_url)
+    }
+
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<ResponseBean> = object : Parcelable.Creator<ResponseBean> {
+            override fun createFromParcel(source: Parcel): ResponseBean = ResponseBean(source)
+            override fun newArray(size: Int): Array<ResponseBean?> = arrayOfNulls(size)
+        }
+    }
+}
