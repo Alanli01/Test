@@ -15,7 +15,7 @@ import com.alan.testproject.bean.ResponseBean;
 /** 
  * DAO for table "RESPONSE_BEAN".
 */
-public class ResponseBeanDao extends AbstractDao<ResponseBean, String> {
+public class ResponseBeanDao extends AbstractDao<ResponseBean, Void> {
 
     public static final String TABLENAME = "RESPONSE_BEAN";
 
@@ -24,7 +24,7 @@ public class ResponseBeanDao extends AbstractDao<ResponseBean, String> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Time = new Property(0, String.class, "time", true, "TIME");
+        public final static Property Time = new Property(0, String.class, "time", false, "TIME");
         public final static Property Current_user_url = new Property(1, String.class, "current_user_url", false, "CURRENT_USER_URL");
         public final static Property Current_user_authorizations_html_url = new Property(2, String.class, "current_user_authorizations_html_url", false, "CURRENT_USER_AUTHORIZATIONS_HTML_URL");
         public final static Property Authorizations_url = new Property(3, String.class, "authorizations_url", false, "AUTHORIZATIONS_URL");
@@ -72,7 +72,7 @@ public class ResponseBeanDao extends AbstractDao<ResponseBean, String> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"RESPONSE_BEAN\" (" + //
-                "\"TIME\" TEXT PRIMARY KEY NOT NULL ," + // 0: time
+                "\"TIME\" TEXT," + // 0: time
                 "\"CURRENT_USER_URL\" TEXT," + // 1: current_user_url
                 "\"CURRENT_USER_AUTHORIZATIONS_HTML_URL\" TEXT," + // 2: current_user_authorizations_html_url
                 "\"AUTHORIZATIONS_URL\" TEXT," + // 3: authorizations_url
@@ -454,8 +454,8 @@ public class ResponseBeanDao extends AbstractDao<ResponseBean, String> {
     }
 
     @Override
-    public String readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0);
+    public Void readKey(Cursor cursor, int offset) {
+        return null;
     }    
 
     @Override
@@ -536,22 +536,20 @@ public class ResponseBeanDao extends AbstractDao<ResponseBean, String> {
      }
     
     @Override
-    protected final String updateKeyAfterInsert(ResponseBean entity, long rowId) {
-        return entity.getTime();
+    protected final Void updateKeyAfterInsert(ResponseBean entity, long rowId) {
+        // Unsupported or missing PK type
+        return null;
     }
     
     @Override
-    public String getKey(ResponseBean entity) {
-        if(entity != null) {
-            return entity.getTime();
-        } else {
-            return null;
-        }
+    public Void getKey(ResponseBean entity) {
+        return null;
     }
 
     @Override
     public boolean hasKey(ResponseBean entity) {
-        return entity.getTime() != null;
+        // TODO
+        return false;
     }
 
     @Override

@@ -40,9 +40,8 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState != null) {
             currentIndex = savedInstanceState.getInt(KEY)
         }
-//        tv.setMovementMethod(ScrollingMovementMethod.getInstance());
         handler = MyHandler(WeakReference(this))
-//        handler?.sendMessageDelayed(Message(),5000)
+        handler?.sendMessageDelayed(Message(),5000)
 
         showFragment(currentIndex)
 
@@ -56,16 +55,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-//
-//
-//
-//
-//        myViewMode.getData().value?.let {
-//            if(it.size>0) {
-//                tv.text = it[it.size - 1].data
-//            }
-//
-//        }
+
 
 
     }

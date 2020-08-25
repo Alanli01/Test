@@ -1,11 +1,14 @@
 package com.alan.testproject.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
-public class ResponseBean {
+public class ResponseBean implements Parcelable {
 
     /**
      * current_user_url : https://api.github.com/user
@@ -41,7 +44,6 @@ public class ResponseBean {
      * user_repositories_url : https://api.github.com/users/{user}/repos{?type,page,per_page,sort}
      * user_search_url : https://api.github.com/search/users?q={query}{&page,per_page,sort,order}
      */
-    @Id
     public String time;
     public String current_user_url;
     public String current_user_authorizations_html_url;
@@ -321,5 +323,94 @@ public class ResponseBean {
         this.time = time;
     }
 
-    
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.time);
+        dest.writeString(this.current_user_url);
+        dest.writeString(this.current_user_authorizations_html_url);
+        dest.writeString(this.authorizations_url);
+        dest.writeString(this.code_search_url);
+        dest.writeString(this.commit_search_url);
+        dest.writeString(this.emails_url);
+        dest.writeString(this.emojis_url);
+        dest.writeString(this.events_url);
+        dest.writeString(this.feeds_url);
+        dest.writeString(this.followers_url);
+        dest.writeString(this.following_url);
+        dest.writeString(this.gists_url);
+        dest.writeString(this.hub_url);
+        dest.writeString(this.issue_search_url);
+        dest.writeString(this.issues_url);
+        dest.writeString(this.keys_url);
+        dest.writeString(this.label_search_url);
+        dest.writeString(this.notifications_url);
+        dest.writeString(this.organization_url);
+        dest.writeString(this.organization_repositories_url);
+        dest.writeString(this.organization_teams_url);
+        dest.writeString(this.public_gists_url);
+        dest.writeString(this.rate_limit_url);
+        dest.writeString(this.repository_url);
+        dest.writeString(this.repository_search_url);
+        dest.writeString(this.current_user_repositories_url);
+        dest.writeString(this.starred_url);
+        dest.writeString(this.starred_gists_url);
+        dest.writeString(this.user_url);
+        dest.writeString(this.user_organizations_url);
+        dest.writeString(this.user_repositories_url);
+        dest.writeString(this.user_search_url);
+    }
+
+    protected ResponseBean(Parcel in) {
+        this.time = in.readString();
+        this.current_user_url = in.readString();
+        this.current_user_authorizations_html_url = in.readString();
+        this.authorizations_url = in.readString();
+        this.code_search_url = in.readString();
+        this.commit_search_url = in.readString();
+        this.emails_url = in.readString();
+        this.emojis_url = in.readString();
+        this.events_url = in.readString();
+        this.feeds_url = in.readString();
+        this.followers_url = in.readString();
+        this.following_url = in.readString();
+        this.gists_url = in.readString();
+        this.hub_url = in.readString();
+        this.issue_search_url = in.readString();
+        this.issues_url = in.readString();
+        this.keys_url = in.readString();
+        this.label_search_url = in.readString();
+        this.notifications_url = in.readString();
+        this.organization_url = in.readString();
+        this.organization_repositories_url = in.readString();
+        this.organization_teams_url = in.readString();
+        this.public_gists_url = in.readString();
+        this.rate_limit_url = in.readString();
+        this.repository_url = in.readString();
+        this.repository_search_url = in.readString();
+        this.current_user_repositories_url = in.readString();
+        this.starred_url = in.readString();
+        this.starred_gists_url = in.readString();
+        this.user_url = in.readString();
+        this.user_organizations_url = in.readString();
+        this.user_repositories_url = in.readString();
+        this.user_search_url = in.readString();
+    }
+
+    public static final Parcelable.Creator<ResponseBean> CREATOR = new Parcelable.Creator<ResponseBean>() {
+        @Override
+        public ResponseBean createFromParcel(Parcel source) {
+            return new ResponseBean(source);
+        }
+
+        @Override
+        public ResponseBean[] newArray(int size) {
+            return new ResponseBean[size];
+        }
+    };
 }
