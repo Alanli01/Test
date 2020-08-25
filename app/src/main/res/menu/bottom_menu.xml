@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/item1"
-        android:icon="?android:attr/actionModeShareDrawable"
+        android:icon="@mipmap/icon_home"
         android:title="home"/>
     <item android:id="@+id/item2"
-        android:icon="@android:drawable/btn_star_big_off"
+        android:icon="@mipmap/icon_history"
         android:title="hiatory"/>
 </menu>
