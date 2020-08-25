@@ -4,15 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alan.testproject.adapter.HistoryAdapter
-import com.alan.testproject.dao.DataBeanDao
+import com.alan.testproject.dao.ResponseBeanDao
 import kotlinx.android.synthetic.main.activity_history.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class HistoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
-      val dataBeanDao: DataBeanDao? = MyApp.instance?.daoSession?.dataBeanDao
+      val dataBeanDao: ResponseBeanDao? = MyApp.instance?.daoSession?.responseBeanDao
         val loadAll = dataBeanDao?.loadAll()
         loadAll?.let {
             if(it.size>0) {

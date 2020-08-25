@@ -16,7 +16,7 @@ class MyApp : Application() {
     }
 
     private fun initDao() {
-        val helper = DevOpenHelper(this, "test.db")
+        val helper = DevOpenHelper(this, "MyTestapp.db")
         val db = helper.writableDatabase
         val daoMaster = DaoMaster(db)
         daoSession = daoMaster.newSession()

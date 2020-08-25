@@ -1,4 +1,5 @@
 
+import com.alan.testproject.bean.ResponseBean
 import com.google.gson.JsonObject
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -15,6 +16,6 @@ interface ApiService {
 
     @JvmSuppressWildcards
     @GET("/")
-    fun data(): Observable<Any>
+    fun data(): Observable<ResponseBean>
 
 }

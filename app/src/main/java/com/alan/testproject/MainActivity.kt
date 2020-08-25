@@ -1,19 +1,17 @@
 package com.alan.testproject
 
+import ExceptionHandle
+import RetrofitManager
+import SchedulerUtils
 import android.annotation.SuppressLint
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.alan.testproject.ViewModel.MyViewMode
-import com.alan.testproject.bean.DataBean
-import com.alan.testproject.dao.DataBeanDao
 import com.alan.testproject.fragment.HistoryFragment
 import com.alan.testproject.fragment.HomeFragment
 import io.reactivex.disposables.CompositeDisposable
@@ -44,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
 //        tv.setMovementMethod(ScrollingMovementMethod.getInstance());
         handler = MyHandler(WeakReference(this))
-        handler?.sendMessageDelayed(Message(),5000)
+//        handler?.sendMessageDelayed(Message(),5000)
 
         showFragment(currentIndex)
 
@@ -72,15 +70,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-      fun loadData(dataBeanDao: DataBeanDao?) {
+      fun loadData() {
         mCd.add(RetrofitManager.service.data()
             .compose(SchedulerUtils.ioToMain())
             .subscribe({ bean ->
-                val toString = bean.toString()
-                val dataBean = DataBean()
-                dataBean.time = System.currentTimeMillis().toString()
-                dataBean.data = toString
-                dataBeanDao?.insert(dataBean)
+                bean.time = System.currentTimeMillis().toString()
+
+                MyApp.instance?.daoSession?.insert(bean)
 
                 handler?.sendMessageDelayed(Message(),5000)
                 myViewMode.LoadData()
@@ -93,11 +89,10 @@ class MainActivity : AppCompatActivity() {
     }
 
       class MyHandler(val ac: WeakReference<MainActivity>?) : Handler() {
-          val dataBeanDao = MyApp.instance?.daoSession?.dataBeanDao
 
           override fun handleMessage(msg: Message) {
             val get = ac?.get()
-            get?.loadData(dataBeanDao)
+            get?.loadData()
         }
     }
     /**

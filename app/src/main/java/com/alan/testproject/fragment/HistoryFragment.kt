@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alan.testproject.R
 import com.alan.testproject.ViewModel.MyViewMode
 import com.alan.testproject.adapter.HistoryAdapter
-import com.alan.testproject.bean.DataBean
+import com.alan.testproject.bean.ResponseBean
 import kotlinx.android.synthetic.main.activity_history.*
 import kotlinx.android.synthetic.main.fragment_history.*
 
 
 class HistoryFragment : Fragment() {
-    private var lists :ArrayList<DataBean>?=null
+    private var lists :ArrayList<ResponseBean>?=null
     var historyAdapter :HistoryAdapter? =null
 
     override fun onCreateView(
@@ -40,7 +40,7 @@ class HistoryFragment : Fragment() {
 
         }
 
-        myViewMode.getData().observe(this, Observer<List<DataBean>?>() { datas ->
+        myViewMode.getData().observe(this, Observer<List<ResponseBean>?>() { datas ->
 
             datas?.let {
                 if(it.size>0) {

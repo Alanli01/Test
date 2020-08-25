@@ -1,17 +1,17 @@
 package com.alan.testproject.adapter
 
 import com.alan.testproject.R
-import com.alan.testproject.bean.DataBean
+import com.alan.testproject.bean.ResponseBean
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
-class HistoryAdapter(layoutResId: Int, data: List<DataBean?>?) :
-    BaseQuickAdapter<DataBean, BaseViewHolder>(layoutResId, data as MutableList<DataBean>?) {
+class HistoryAdapter(layoutResId: Int, data: List<ResponseBean?>?) :
+    BaseQuickAdapter<ResponseBean, BaseViewHolder>(layoutResId, data as MutableList<ResponseBean>?) {
     override fun convert(
         baseViewHolder: BaseViewHolder,
-        dataBean: DataBean
+        bean: ResponseBean
     ) {
-        baseViewHolder.setText(R.id.tv_time, dataBean.time)
-        baseViewHolder.setText(R.id.tv_data, dataBean.data)
+        baseViewHolder.setText(R.id.tv_time, bean.time)
+        baseViewHolder.setText(R.id.tv_data, bean.authorizations_url)
     }
 }
