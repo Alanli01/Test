@@ -71,24 +71,24 @@ dependencies {
     // Required -- JUnit 4 framework
     testImplementation 'junit:junit:4.13'
     // Optional -- Robolectric environment
-    debugImplementation 'androidx.test:core:1.2.0'
-    testImplementation 'androidx.test:core:1.2.0'
+    debugImplementation 'androidx.test:core:'+rootProject.coreVersion
+    testImplementation 'androidx.test:core:'+rootProject.coreVersion
     // Optional -- Mockito framework
     testImplementation 'org.mockito:mockito-core:1.10.19'
-    testImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    testImplementation 'org.robolectric:annotations:4.4-alpha-2'
-    debugImplementation 'androidx.fragment:fragment-testing:1.3.0-alpha08'
-    testImplementation "com.google.truth:truth:1.0.1"
+    testImplementation 'androidx.test.espresso:espresso-core:' +rootProject.espressoVersion
+    testImplementation 'org.robolectric:annotations:'+rootProject.robolectricVersion
+    debugImplementation 'androidx.fragment:fragment-testing:' +rootProject.androidxFragmentVersion
+    testImplementation "com.google.truth:truth:" + rootProject.truthVersion
     testAnnotationProcessor 'com.google.auto.service:auto-service:1.0-rc4'
-    testImplementation 'androidx.test.ext:junit:1.1.1'
+    testImplementation 'androidx.test.ext:junit:' +rootProject.extJUnitVersion
 
-    androidTestImplementation "com.google.truth:truth:1.0.1"
-    androidTestImplementation 'org.robolectric:annotations:4.4-alpha-2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    androidTestImplementation 'androidx.fragment:fragment-testing:1.3.0-alpha08'
-    androidTestImplementation 'androidx.test:core:1.2.0'
-    androidTestImplementation 'androidx.test:runner:1.3.0-rc03'
+    androidTestImplementation "com.google.truth:truth:" + rootProject.truthVersion
+    androidTestImplementation 'org.robolectric:annotations:'+rootProject.robolectricVersion
+    androidTestImplementation 'androidx.test.ext:junit:' +rootProject.extJUnitVersion
+    androidTestImplementation 'androidx.test.espresso:espresso-core:' +rootProject.espressoVersion
+    androidTestImplementation 'androidx.fragment:fragment-testing:' +rootProject.androidxFragmentVersion
+    androidTestImplementation 'androidx.test:core:'+rootProject.coreVersion
+    androidTestImplementation 'androidx.test:runner:'+rootProject.runnerVersion
 
 
     def lifecycle_version = "2.0.0"
